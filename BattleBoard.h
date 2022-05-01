@@ -79,6 +79,7 @@ public:
 		}
 		PrintBoard();
 
+		// placing destroyer
 		std::cout << "Which direction do you want your destroyer to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your destroyer (separated by spaces).\n> ";
@@ -107,6 +108,7 @@ public:
 		}
 		PrintBoard();
 
+		// placing battleship
 		std::cout << "Which direction do you want your battleship to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your battleship (separated by spaces).\n> ";
