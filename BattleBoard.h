@@ -49,8 +49,9 @@ public:
 		int row, col;
 		std::string s, orientation;
 
-		//placing frigate
 		PrintBoard();
+
+		//placing frigate
 		std::cout << "Which direction do you want your frigate to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
