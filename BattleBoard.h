@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <set>
 
@@ -10,6 +11,12 @@ public:
 	{
 		m_Rows = 10;
 		m_Cols = 10;
+		board = new char*[m_Rows];
+
+		for (int i = 0; i < m_Rows; i++)
+		{
+			board[i] = new char[m_Cols];
+		}
 	}
 	BattleBoard(int rows, int cols)
 	{
@@ -35,12 +42,96 @@ public:
 			}
 		}
 	}
-	void setup()
+	void setup() // STILL NEED TO ENTER INTO SETS
 	{
+		const int frigate_size = 2, destroyer_size = 3, BattleShip_size = 4;
+		int col, row;
+		
+		// placing frigate
+		for (int i = 0; i < frigate_size; i++)
+		{
+			PrintBoard();
+			std::cout << "Choose a column to place position " << i + 1 << " for your frigate ship.\n> ";
+			std::cin >> col;
+			std::cout << "Now chose a row to place position " << i + 1 << " for your firgate ship.\n> ";
+			std::cin >> row;
 
+			while (i > 0)
+			{
+				if (row != row + 1 || row != row - 1)
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a column to place positiong " << i + 1 << " for your firgate ship.\n> ";
+					std::cin >> col;
+				}
+				if (col != col + 1 || col != col - 1)
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a row to place positiong " << i + 1 << " for your frigate ship.\n> ";
+					std::cin >> row;
+				}
+			}
+			board[row][col] = 'F';
+		}
+
+		// placing destroyer
+		for (int i = 0; i < destroyer_size; i++)
+		{
+			PrintBoard();
+			std::cout << "Choose a column to place position " << i + 1 << " for your destroyer.\n> ";
+			std::cin >> col;
+			std::cout << "Now chose a row to place position " << i + 1 << " for your destroyer.\n> ";
+			std::cin >> row;
+
+			while (i > 0)
+			{
+				if (row != row + 1 || row != row - 1)
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a column to place positiong " << i + 1 << " for your destroyer.\n> ";
+					std::cin >> col;
+				}
+				if (col != col + 1 || col != col - 1)
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a row to place positiong " << i + 1 << " for your destroyer.\n> ";
+					std::cin >> row;
+				}
+			}
+			board[row][col] = 'D';
+		}
+
+		// placing battleship
+		for (int i = 0; i < BattleShip_size; i++)
+		{
+			PrintBoard();
+			std::cout << "Choose a column to place position " << i + 1 << " for your battleship.\n> ";
+			std::cin >> col;
+			std::cout << "Now chose a row to place position " << i + 1 << " for your battleship.\n> ";
+			std::cin >> row;
+
+			while (i > 0)
+			{
+				if (row != row + 1 || row != row - 1) // requires 
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a column to place positiong " << i + 1 << " for your battleship.\n> ";
+					std::cin >> col;
+				}
+				if (col != col + 1 || col != col - 1)
+				{
+					throw ("Incorrect placement!");
+					std::cout << "Choose a row to place positiong " << i + 1 << " for your battleship.\n> ";
+					std::cin >> row;
+				}
+			}
+			board[row][col] = 'B';
+		}
 	}
 	void MakeMove()
 	{
+		int row, col;
+
 
 	}
 	void PrintBoard()
