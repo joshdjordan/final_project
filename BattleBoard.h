@@ -50,178 +50,91 @@ public:
 		std::string s, orientation;
 
 		//placing frigate
+		PrintBoard();
+		std::cout << "Which direction do you want your frigate to be from the starting point? (left, right, up, down)\n> ";
+		std::cin >> orientation;
+		std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
+		std::cin >> row >> col;
+		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
+		std::cin >> s;
+		
 		for (int i = 0; i < frigate_size; i++)
 		{
-			PrintBoard();
-			std::cout << "Which direction do you want your frigate ship to travel from the starting point? (left, right, up, down)\n> ";
-			std::cin >> orientation;
-			std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
-			std::cin >> row >> col;
-
 			if (orientation == "left")
 			{
 				board[row][col - i] = 'F';
 			}
 			else if (orientation == "right")
 			{
-				board[row][col + i];
+				board[row][col + i] = 'F';
+			}
+			else if (orientation == "up")
+			{
+				board[row - i][col] = 'F';
+			}
+			else if (orientation == "down")
+			{
+				board[row + i][col] = 'F';
 			}
 		}
+		PrintBoard();
+
+		std::cout << "Which direction do you want your destroyer to be from the starting point? (left, right, up, down)\n> ";
+		std::cin >> orientation;
+		std::cout << "Choose a row and column to place your starting point for your destroyer (separated by spaces).\n> ";
+		std::cin >> row >> col;
+		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
+		std::cin >> s;
+
+		for (int i = 0; i < destroyer_size; i++)
+		{
+			if (orientation == "left")
+			{
+				board[row][col - i] = 'D';
+			}
+			else if (orientation == "right")
+			{
+				board[row][col + i] = 'D';
+			}
+			else if (orientation == "up")
+			{
+				board[row - i][col] = 'D';
+			}
+			else if (orientation == "down")
+			{
+				board[row + i][col] = 'D';
+			}
+		}
+		PrintBoard();
+
+		std::cout << "Which direction do you want your battleship to be from the starting point? (left, right, up, down)\n> ";
+		std::cin >> orientation;
+		std::cout << "Choose a row and column to place your starting point for your battleship (separated by spaces).\n> ";
+		std::cin >> row >> col;
+		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
+		std::cin >> s;
+
+		for (int i = 0; i < BattleShip_size; i++)
+		{
+			if (orientation == "left")
+			{
+				board[row][col - i] = 'B';
+			}
+			else if (orientation == "right")
+			{
+				board[row][col + i] = 'B';
+			}
+			else if (orientation == "up")
+			{
+				board[row - i][col] = 'B';
+			}
+			else if (orientation == "down")
+			{
+				board[row + i][col] = 'B';
+			}
+		}
+		PrintBoard();
 	}
-
-	//void player_setup()
-	//{
-	//	const int frigate_size = 2, destroyer_size = 3, BattleShip_size = 4;
-	//	int col, row;
-	//	std::string s;
-	//	
-	//	// placing frigate
-	//	for (int i = 0; i < frigate_size; i++)
-	//	{
-	//		bool found = true;
-	//		PrintBoard();
-	//		std::cout << "Choose a column to place position " << i + 1 << " for your frigate ship.\n> ";
-	//		std::cin >> col;
-	//		std::cout << "Now chose a row to place position " << i + 1 << " for your firgate ship.\n> ";
-	//		std::cin >> row;
-
-	//		while (i > 0)
-	//		{
-	//			if (row != row + 1 || row != row - 1)
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a column to place positiong " << i + 1 << " for your firgate ship.\n> ";
-	//				std::cin >> col;
-	//			}
-	//			if (col != col + 1 || col != col - 1)
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a row to place positiong " << i + 1 << " for your frigate ship.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//		
-	//		while (found)
-	//		{
-	//			std::cout << "Enter your final posotion (if you chose row 3 and column 9. Your example should be entered as 39)." << std::endl;
-	//			std::cin >> s;
-
-	//			if (ships.find(s) == ships.end())
-	//			{
-	//				board[row][col] = 'F';
-	//				ships.insert(s);
-	//				frigate.insert(s);
-	//				found = false;
-	//			}
-	//			else
-	//			{
-	//				std::cout << "You have already placed something there!" << std::endl;
-	//				std::cout << "Choose a column to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> col;
-	//				std::cout << "Now chose a row to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//	}
-
-	//	// placing destroyer
-	//	for (int i = 0; i < destroyer_size; i++)
-	//	{
-	//		bool found = true;
-	//		PrintBoard();
-	//		std::cout << "Choose a column to place position " << i + 1 << " for your destroyer.\n> ";
-	//		std::cin >> col;
-	//		std::cout << "Now chose a row to place position " << i + 1 << " for your destroyer.\n> ";
-	//		std::cin >> row;
-
-	//		while (i > 0)
-	//		{
-	//			if (row != row + 1 || row != row - 1)
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a column to place positiong " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> col;
-	//			}
-	//			if (col != col + 1 || col != col - 1)
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a row to place positiong " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//		
-	//		while (found)
-	//		{
-	//			std::cout << "Enter your final posotion (if you chose row 3 and column 9. Your example should be entered as 39)." << std::endl;
-	//			std::cin >> s;
-
-	//			if (ships.find(s) == ships.end())
-	//			{
-	//				board[row][col] = 'F';
-	//				ships.insert(s);
-	//				destroyer.insert(s);
-	//				found = false;
-	//			}
-	//			else
-	//			{
-	//				std::cout << "You have already placed something there!" << std::endl;
-	//				std::cout << "Choose a column to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> col;
-	//				std::cout << "Now chose a row to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//	}
-
-	//	// placing battleship
-	//	for (int i = 0; i < BattleShip_size; i++)
-	//	{
-	//		bool found = true;
-	//		PrintBoard();
-	//		std::cout << "Choose a column to place position " << i + 1 << " for your battleship.\n> ";
-	//		std::cin >> col;
-	//		std::cout << "Now chose a row to place position " << i + 1 << " for your battleship.\n> ";
-	//		std::cin >> row;
-
-	//		while (i > 0)
-	//		{
-	//			if (row != row + 1 || row != row - 1) // requires 
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a column to place positiong " << i + 1 << " for your battleship.\n> ";
-	//				std::cin >> col;
-	//			}
-	//			if (col != col + 1 || col != col - 1)
-	//			{
-	//				std::cout << "Incorrect placement!" << std::endl;
-	//				std::cout << "Choose a row to place positiong " << i + 1 << " for your battleship.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//		
-	//		while (found)
-	//		{
-	//			std::cout << "Enter your final posotion (if you chose row 3 and column 9. Your example should be entered as 39)." << std::endl;
-	//			std::cin >> s;
-
-	//			if (ships.find(s) == ships.end())
-	//			{
-	//				board[row][col] = 'F';
-	//				ships.insert(s);
-	//				battleship.insert(s);
-	//				found = false;
-	//			}
-	//			else
-	//			{
-	//				std::cout << "You have already placed something there!" << std::endl;
-	//				std::cout << "Choose a column to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> col;
-	//				std::cout << "Now chose a row to place position " << i + 1 << " for your destroyer.\n> ";
-	//				std::cin >> row;
-	//			}
-	//		}
-	//	}
-	//}
 
 	void npc_setup()
 	{
