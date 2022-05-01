@@ -56,26 +56,37 @@ public:
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
 		std::cin >> row >> col;
-		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
-		std::cin >> s;
+		
 		
 		for (int i = 0; i < frigate_size; i++)
 		{
 			if (orientation == "left")
 			{
 				board[row][col - i] = 'F';
+				s = std::to_string(row) + std::to_string(col - i);
+				ships.insert(s);
+				frigate.insert(s);
 			}
 			else if (orientation == "right")
 			{
 				board[row][col + i] = 'F';
+				s = std::to_string(row) + std::to_string(col + i);
+				ships.insert(s);
+				frigate.insert(s);
 			}
 			else if (orientation == "up")
 			{
 				board[row - i][col] = 'F';
+				s = std::to_string(row - i) + std::to_string(col);
+				ships.insert(s);
+				frigate.insert(s);
 			}
 			else if (orientation == "down")
 			{
 				board[row + i][col] = 'F';
+				s = std::to_string(row + i) + std::to_string(col);
+				ships.insert(s);
+				frigate.insert(s);
 			}
 		}
 		PrintBoard();
@@ -85,26 +96,36 @@ public:
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your destroyer (separated by spaces).\n> ";
 		std::cin >> row >> col;
-		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
-		std::cin >> s;
 
 		for (int i = 0; i < destroyer_size; i++)
 		{
 			if (orientation == "left")
 			{
 				board[row][col - i] = 'D';
+				s = std::to_string(row) + std::to_string(col - i);
+				ships.insert(s);
+				destroyer.insert(s);
 			}
 			else if (orientation == "right")
 			{
 				board[row][col + i] = 'D';
+				s = std::to_string(row) + std::to_string(col + i);
+				ships.insert(s);
+				destroyer.insert(s);
 			}
 			else if (orientation == "up")
 			{
 				board[row - i][col] = 'D';
+				s = std::to_string(row - i) + std::to_string(col);
+				ships.insert(s);
+				destroyer.insert(s);
 			}
 			else if (orientation == "down")
 			{
 				board[row + i][col] = 'D';
+				s = std::to_string(row + i) + std::to_string(col);
+				ships.insert(s);
+				destroyer.insert(s);
 			}
 		}
 		PrintBoard();
@@ -114,34 +135,39 @@ public:
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your battleship (separated by spaces).\n> ";
 		std::cin >> row >> col;
-		std::cout << "To confirm this ship placement enter the coordinate (Ex. 01).\n> ";
-		std::cin >> s;
 
 		for (int i = 0; i < BattleShip_size; i++)
 		{
 			if (orientation == "left")
 			{
 				board[row][col - i] = 'B';
+				s = std::to_string(row) + std::to_string(col - i);
+				ships.insert(s);
+				battleship.insert(s);
 			}
 			else if (orientation == "right")
 			{
 				board[row][col + i] = 'B';
+				s = std::to_string(row) + std::to_string(col + i);
+				ships.insert(s);
+				battleship.insert(s);
 			}
 			else if (orientation == "up")
 			{
 				board[row - i][col] = 'B';
+				s = std::to_string(row - i) + std::to_string(col);
+				ships.insert(s);
+				battleship.insert(s);
 			}
 			else if (orientation == "down")
 			{
 				board[row + i][col] = 'B';
+				s = std::to_string(row + i) + std::to_string(col);
+				ships.insert(s);
+				battleship.insert(s);
 			}
 		}
 		PrintBoard();
-	}
-
-	void npc_setup()
-	{
-
 	}
 
 	void player_MakeMove()
@@ -195,11 +221,6 @@ public:
 			board[row][col] = 'O';
 			PrintBoard();
 		}
-	}
-
-	void npc_MakeMove()
-	{
-
 	}
 
 	void PrintBoard()
