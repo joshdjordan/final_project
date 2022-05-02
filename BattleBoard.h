@@ -10,8 +10,8 @@ public:
 	// constructors //
 	BattleBoard()
 	{
-		m_Rows = 10;
-		m_Cols = 10;
+		m_Rows = 0;
+		m_Cols = 0;
 		board = new char*[m_Rows];
 
 		for (int i = 0; i < m_Rows; i++)
@@ -43,7 +43,7 @@ public:
 		}
 	}
 
-	void player_setup()
+	void setup()
 	{
 		const int frigate_size = 2, destroyer_size = 3, BattleShip_size = 4;
 		int row, col;
@@ -170,7 +170,7 @@ public:
 		PrintBoard();
 	}
 
-	void player_MakeMove()
+	void MakeMove()
 	{
 		int row, col;
 		std::string s;
