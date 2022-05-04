@@ -70,7 +70,13 @@ public:
 		std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
 		std::cin >> row >> col;
 		std::cout << std::endl;
-		
+
+		while (row < 1 || col < 1)
+		{
+			std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+			std::cin >> row >> col;
+			std::cout << std::endl;
+		}		
 		
 		for (int i = 0; i < frigate_size; i++)
 		{
@@ -112,35 +118,86 @@ public:
 		std::cin >> row >> col;
 		std::cout << std::endl;
 
+		while (row < 1 || col < 1)
+		{
+			std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+			std::cin >> row >> col;
+			std::cout << std::endl;
+		}
+
 		for (int i = 0; i < destroyer_size; i++)
 		{
 			if (orientation == "left")
 			{
-				board[row][col - i] = 'D';
 				s = std::to_string(row) + std::to_string(col - i);
-				ships.insert(s);
-				destroyer.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewCol = col - i;
+					s = std::to_string(row) + std::to_string(NewCol + i + 1);
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row][NewCol + i + 1] = 'D';
+				}
+				else
+				{
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row][col - i] = 'D';
+				}
 			}
 			else if (orientation == "right")
 			{
-				board[row][col + i] = 'D';
 				s = std::to_string(row) + std::to_string(col + i);
-				ships.insert(s);
-				destroyer.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewCol = col + i;
+					s = std::to_string(row) + std::to_string(NewCol - i - 1);
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row][NewCol - i - 1] = 'D';
+				}
+				else
+				{
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row][col + i] = 'D';
+				}
 			}
 			else if (orientation == "up")
 			{
-				board[row - i][col] = 'D';
 				s = std::to_string(row - i) + std::to_string(col);
-				ships.insert(s);
-				destroyer.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewRow = row - i;
+					s = std::to_string(NewRow + i + 1) + std::to_string(col);
+					ships.insert(s);
+					destroyer.insert(s);
+					board[NewRow + i + 1][col] = 'D';
+				}
+				else
+				{
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row - i][col] = 'D';
+				}
 			}
 			else if (orientation == "down")
 			{
-				board[row + i][col] = 'D';
 				s = std::to_string(row + i) + std::to_string(col);
-				ships.insert(s);
-				destroyer.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewRow = row + i;
+					s = std::to_string(NewRow - i - 1) + std::to_string(col);
+					ships.insert(s);
+					destroyer.insert(s);
+					board[NewRow - i - 1][col] = 'D';
+				}
+				else
+				{
+					ships.insert(s);
+					destroyer.insert(s);
+					board[row + i][col] = 'D';
+				}
 			}
 		}
 		PrintBoard();
@@ -152,35 +209,86 @@ public:
 		std::cin >> row >> col;
 		std::cout << std::endl;
 
+		while (row < 1 || col < 1)
+		{
+			std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+			std::cin >> row >> col;
+			std::cout << std::endl;
+		}
+
 		for (int i = 0; i < BattleShip_size; i++)
 		{
 			if (orientation == "left")
 			{
-				board[row][col - i] = 'B';
 				s = std::to_string(row) + std::to_string(col - i);
-				ships.insert(s);
-				battleship.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewCol = col - i;
+					s = std::to_string(row) + std::to_string(NewCol + i + 1);
+					ships.insert(s);
+					battleship.insert(s);
+					board[row][NewCol + i + 1] = 'B';
+				}
+				else
+				{
+					ships.insert(s);
+					battleship.insert(s);
+					board[row][col - i] = 'B';
+				}
 			}
 			else if (orientation == "right")
 			{
-				board[row][col + i] = 'B';
 				s = std::to_string(row) + std::to_string(col + i);
-				ships.insert(s);
-				battleship.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewCol = col + i;
+					s = std::to_string(row) + std::to_string(NewCol - i - 1);
+					ships.insert(s);
+					battleship.insert(s);
+					board[row][NewCol - i - 1] = 'B';
+				}
+				else
+				{
+					ships.insert(s);
+					battleship.insert(s);
+					board[row][col + i] = 'B';
+				}
 			}
 			else if (orientation == "up")
 			{
-				board[row - i][col] = 'B';
 				s = std::to_string(row - i) + std::to_string(col);
-				ships.insert(s);
-				battleship.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewRow = row - i;
+					s = std::to_string(NewRow + i + 1) + std::to_string(col);
+					ships.insert(s);
+					battleship.insert(s);
+					board[NewRow + i + 1][col] = 'B';
+				}
+				else
+				{
+					ships.insert(s);
+					battleship.insert(s);
+					board[row - i][col] = 'B';
+				}
 			}
 			else if (orientation == "down")
 			{
-				board[row + i][col] = 'B';
 				s = std::to_string(row + i) + std::to_string(col);
-				ships.insert(s);
-				battleship.insert(s);
+				if (ships.find(s) != ships.end())
+				{
+					int NewRow = row + i;
+					s = std::to_string(NewRow - i - 1) + std::to_string(col);
+					ships.insert(s);
+					battleship.insert(s);
+					board[NewRow - i - 1][col] = 'B';
+				}
+				else
+				{
+					ships.insert(s);
+					battleship.insert(s);
+					board[row + i][col] = 'B';
+				}
 			}
 		}
 		PrintBoard();

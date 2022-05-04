@@ -101,7 +101,11 @@ int main()
 
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b2.SendHit(row, col);
                         b1.CheckHit(row, col, p2_EnemyBoard);
 
@@ -116,7 +120,11 @@ int main()
                         
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b1.SendHit(row, col);
                         b2.CheckHit(row, col, p1_EnemyBoard);
 
@@ -139,7 +147,11 @@ int main()
 
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b1.SendHit(row, col);
                         b2.CheckHit(row, col, p1_EnemyBoard);
 
@@ -154,7 +166,11 @@ int main()
 
                         std::cout << "Enter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b2.SendHit(row, col);
                         b1.CheckHit(row, col, p2_EnemyBoard);
 
@@ -168,7 +184,7 @@ int main()
             }
             else if (CoinToss[0] == 't' || CoinToss[0] == 'T')
             {
-                if (coin == 1)
+                if (coin == 2)
                 {
                     while (!p1_ships && !p2_ships) // loops until either player 1 or player 2 has won
                     {
@@ -180,7 +196,11 @@ int main()
 
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b2.SendHit(row, col);
                         b1.CheckHit(row, col, p2_EnemyBoard);
 
@@ -195,7 +215,11 @@ int main()
 
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b1.SendHit(row, col);
                         b2.CheckHit(row, col, p1_EnemyBoard);
 
@@ -218,7 +242,11 @@ int main()
 
                         std::cout << "\nEnter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b1.SendHit(row, col);
                         b2.CheckHit(row, col, p1_EnemyBoard);
 
@@ -233,7 +261,11 @@ int main()
 
                         std::cout << "Enter the row and column you wish to fire your missile (separated by spaces).\n> ";
                         std::cin >> row >> col;
-
+                        while (row < 1 || col < 1)
+                        {
+                            std::cout << "Incorrect location! Please enter a new location within the bounds of the board\n> ";
+                            std::cin >> row >> col;
+                        }
                         b2.SendHit(row, col);
                         b1.CheckHit(row, col, p2_EnemyBoard);
 
