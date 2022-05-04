@@ -12,34 +12,47 @@ public:
 	{
 		m_Rows = 0;
 		m_Cols = 0;
-		board = new char*[m_Rows];
+		board = new char*[m_Rows + 1];
 
-		for (int i = 0; i < m_Rows; i++)
+		for (int i = 0; i < m_Rows + 1; i++)
 		{
-			board[i] = new char[m_Cols];
+			board[i] = new char[m_Cols + 1];
 		}
 	}
 	BattleBoard(int rows, int cols)
 	{
 		m_Rows = rows;
 		m_Cols = cols;
-		board = new char* [rows];
+		board = new char* [m_Rows + 1];
 
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < m_Rows + 1; i++)
 		{
-			board[i] = new char[cols];
+			board[i] = new char[m_Cols + 1];
 		}
 	}
 
 	// member functions //
 	void CreateBoard(int rows, int cols)
 	{
-		for (int i = 0; i < rows; i++)
+		int count = 49;
+
+		for (int i = 0; i < rows + 1; i++)
 		{
-			for (int j = 0; j < cols; j++)
+			for (int j = 0; j < cols + 1; j++)
 			{
 				board[i][j] = '-';
 			}
+		}
+		board[0][0] = ' ';
+		for (int i = 1; i < rows; i++)
+		{
+			board[i][0] = count++;
+		}
+		
+		count = 49;
+		for (int i = 1; i < cols; i++)
+		{
+			board[0][i] = count++;
 		}
 	}
 
@@ -52,10 +65,11 @@ public:
 		PrintBoard();
 
 		//placing frigate
-		std::cout << "Which direction do you want your frigate to be from the starting point? (left, right, up, down)\n> ";
+		std::cout << "\nWhich direction do you want your frigate to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your frigate (separated by spaces).\n> ";
 		std::cin >> row >> col;
+		std::cout << std::endl;
 		
 		
 		for (int i = 0; i < frigate_size; i++)
@@ -92,10 +106,11 @@ public:
 		PrintBoard();
 
 		// placing destroyer
-		std::cout << "Which direction do you want your destroyer to be from the starting point? (left, right, up, down)\n> ";
+		std::cout << "\nWhich direction do you want your destroyer to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your destroyer (separated by spaces).\n> ";
 		std::cin >> row >> col;
+		std::cout << std::endl;
 
 		for (int i = 0; i < destroyer_size; i++)
 		{
@@ -131,10 +146,11 @@ public:
 		PrintBoard();
 
 		// placing battleship
-		std::cout << "Which direction do you want your battleship to be from the starting point? (left, right, up, down)\n> ";
+		std::cout << "\nWhich direction do you want your battleship to be from the starting point? (left, right, up, down)\n> ";
 		std::cin >> orientation;
 		std::cout << "Choose a row and column to place your starting point for your battleship (separated by spaces).\n> ";
 		std::cin >> row >> col;
+		std::cout << std::endl;
 
 		for (int i = 0; i < BattleShip_size; i++)
 		{
@@ -170,22 +186,24 @@ public:
 		PrintBoard();
 	}
 
-	void MakeMove()
+	std::string SendHit(int row, int col)
 	{
-		int row, col;
 		std::string s;
 
-		PrintBoard();
+		s = std::to_string(row) + std::to_string(col);
 
-		std::cout << "Enter the row and column you wish to fire your first missile (separated by spaces).\> ";
-		std::cin >> row >> col;
+		return s;
+	}
 
-		std::cout << "Are you sure you want to fire at Row: " << row << " and Column: " << col << "?" << std::endl;
-		std::cout << "To confirm enter the coordinate (i.e. 37).\n> ";
-		std::cin >> s;
+	void CheckHit(int row, int col, BattleBoard object)
+	{
+		std::string s;
+		
+		s = SendHit(row, col);
 
 		if (ships.find(s) != ships.end())
 		{
+			std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			std::cout << "YOUR MISSILE HAS STRUCK A SHIP!" << std::endl;
 			ships.erase(s);
 			if (frigate.find(s) != frigate.end())
@@ -209,18 +227,61 @@ public:
 				battleship.erase(s);
 				if (battleship.empty())
 				{
-					std::cout << "YOU HAVE SUNK TEH ENEMIES BATTLESHIP!" << std::endl;
+					std::cout << "YOU HAVE SUNK THE ENEMIES BATTLESHIP!" << std::endl;
 				}
 			}
-			board[row][col] = 'X';
-			PrintBoard();
+			object.board[row][col] = 'X';
+			object.PrintBoard();
 		}
 		else
 		{
-			std::cout << "Your missile has missed the enemies ship and has splashed into the water inflicting no damage." << std::endl;
-			board[row][col] = 'O';
-			PrintBoard();
+			std::cout << "Your missile has missed the enemies ship and splashed into the water inflicting 0 damage." << std::endl;
+			object.board[row][col] = 'O';
+			object.PrintBoard();
 		}
+	}
+
+	// function to test if sets are empty
+	bool IsShips_Empty()
+	{
+		bool set = false;
+
+		if (this->ships.empty())
+		{
+			set = true;
+			return set;
+		}
+		return set;
+	}
+	bool IsFrigate_Empty(BattleBoard object)
+	{
+		bool set = true;
+
+		if (object.frigate.empty())
+		{
+			return true;
+		}
+		return false;
+	}
+	bool IsDestroyer_Empty(BattleBoard object)
+	{
+		bool set = true;
+
+		if (object.destroyer.empty())
+		{
+			return true;
+		}
+		return false;
+	}
+	bool IsBattleShip_Empty(BattleBoard object)
+	{
+		bool set = true;
+
+		if (object.battleship.empty())
+		{
+			return true;
+		}
+		return false;
 	}
 
 	void PrintBoard()
